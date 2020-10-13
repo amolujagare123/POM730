@@ -4,26 +4,26 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import pages.ForgotPassword;
 import pages.Login;
 import util.OpenUrl;
 
 import java.io.IOException;
 
 import static utility.ConfigReader.getUrl;
-import static utility.ConfigReader.getUsername;
 
-public class LoginTest extends OpenUrl {
-
+public class ForgotPasswordTest extends OpenUrl {
 
     @Test
-    public void logintest() throws IOException {
+    public void forgotPasswordTest() throws IOException {
 
         Login login = new Login(driver);
+        login.clickBtnForgotPass();
 
-        login.setTxtUser(getUsername());
-        login.setTxtPassword("admin123");
-        login.clickBtnLogin();
+        ForgotPassword forgotPassword = new ForgotPassword(driver);
+
+        forgotPassword.setTxtEmail("amol@gmail.com");
+        forgotPassword.clickBtnReset();
 
     }
-
 }
