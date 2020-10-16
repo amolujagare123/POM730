@@ -9,8 +9,7 @@ import util.OpenUrl;
 
 import java.io.IOException;
 
-import static utility.ConfigReader.getUrl;
-import static utility.ConfigReader.getUsername;
+import static utility.ConfigReader.*;
 
 public class LoginTest extends OpenUrl {
 
@@ -21,7 +20,7 @@ public class LoginTest extends OpenUrl {
         Login login = new Login(driver);
 
         login.setTxtUser(getUsername());
-        login.setTxtPassword("admin123");
+        login.setTxtPassword(getPassword());
         login.clickBtnLogin();
 
     }

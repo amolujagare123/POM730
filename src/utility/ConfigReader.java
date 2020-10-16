@@ -28,4 +28,8 @@ public class ConfigReader {
         return getPropertiesObject().getProperty("username");
     }
 
+    public static String getPassword() throws IOException {
+        return getPropertiesObject().getProperty("password");
+    }
+
 }

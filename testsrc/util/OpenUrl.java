@@ -4,7 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
-import utility.Driver;
+import static  utility.Driver.*;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class OpenUrl {
         driver = new ChromeDriver();
         driver.manage().window().maximize();*/
 
-        driver =getDriver(Driver.DriverTypes.FIREFOX);
+        driver =getDriver(DriverTypes.CHROME);
 
         driver.get(getUrl());
     }
