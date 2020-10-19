@@ -23,14 +23,31 @@ public class AddClientTest extends DoLogin {
 
         AddClients addClients = new AddClients(driver);
 
-        addClients.setClientName("amol");
+       /* addClients.setClientName("amol");
         addClients.setSurname("Ujagare");
         addClients.setAddress1("katraj");
         addClients.setAddress2("Pune");
         addClients.setCity("Pune");
+        addClients.setState("maharashtra");
+        addClients.setZip("7889899");
         addClients.setPhone("99999");
+         addClients.setFax("sdsdsd");
+         addClients.setMobile("89898");
+         addClients.setEmail("amol@gmail.com");
+         addClients.setWeb("www.fb.com");
+         addClients.setTax("8989");
+         addClients.setVat("676767");
 
-        addClients.clickSave();
+         addClients.setlanguage("English");
+
+         addClients.setCountry("Indonesia");
+
+         addClients.setGender("Other");
+
+        addClients.clickSave();*/
+
+        addClients.setBirthDate("05/14/2019");
+
     }
 
 
