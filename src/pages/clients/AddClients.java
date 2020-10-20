@@ -1,11 +1,17 @@
 package pages.clients;
 
+import org.joda.time.DateTime;
+import org.joda.time.Months;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AddClients {
 
@@ -114,7 +120,7 @@ public class AddClients {
         @FindBy(xpath="//input[@id='client_birthdate']")
                 WebElement txtDate;
 
-    public void setBirthDate(String myDate)
+    public void setBirthDateJS(String myDate)
     {
       //  txtDate.sendKeys(myDate);
 
@@ -122,7 +128,58 @@ public class AddClients {
         js.executeScript("arguments[0].setAttribute('value','"+myDate+"')",txtDate);
     }
 
+    public void setBirthDate(String setDateStr) throws ParseException {
+        txtDate.click();
+        System.out.println(setDateStr);
 
+        // lets extract the current date (month year)
+
+        String currDateStr =  driver.findElement(By.className("datepicker-switch")).getText();
+
+        System.out.println(currDateStr);
+
+        // lets convert currentDateStr & setDateStr into date
+
+        Date setDate = new SimpleDateFormat("dd/MM/yyyy").parse(setDateStr);
+
+        Date currDate = new SimpleDateFormat("MMMM yyyy").parse(currDateStr);
+
+        // take month difference between current date & set date
+        // download Joda date jar
+
+        int monthDiff = Months.monthsBetween(new DateTime(currDate).withDayOfMonth(1),
+
+                new DateTime(setDate).withDayOfMonth(1)).getMonths();
+
+        System.out.println(monthDiff);
+
+
+        boolean isFuture=true;
+
+        if(monthDiff<0) // if the month diff is negative then (-5)
+        {
+            isFuture=false; // set isFuture to false
+            monthDiff = monthDiff * (-1); // make the value of month diff positive -- 5
+        }
+
+
+        for(int i=0 ; i<monthDiff ;i++)
+        {
+            if(isFuture)
+                driver.findElement(By.xpath("//th[@class='next']")).click();
+            else
+                driver.findElement(By.xpath("//th[@class='prev']")).click();
+        }
+
+
+        String currDayStr = new SimpleDateFormat("dd").format(setDate);
+
+        int currDay = Integer.parseInt(currDayStr);
+
+        driver.findElement(By.xpath("//td[@class='day' and text()='"+currDay+"']")).click();
+
+
+    }
 
 
     WebDriver driver;

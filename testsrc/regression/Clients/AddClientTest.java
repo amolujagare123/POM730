@@ -9,6 +9,7 @@ import util.DoLogin;
 import util.OpenUrl;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import static utility.ConfigReader.getPassword;
 import static utility.ConfigReader.getUsername;
@@ -16,8 +17,7 @@ import static utility.ConfigReader.getUsername;
 public class AddClientTest extends DoLogin {
 
     @Test
-    public void addclientTest()
-    {
+    public void addclientTest() throws ParseException {
         Menu menu = new Menu(driver);
         menu.clickAddClient();
 
@@ -46,7 +46,11 @@ public class AddClientTest extends DoLogin {
 
         addClients.clickSave();*/
 
-        addClients.setBirthDate("05/14/2019");
+        addClients.setBirthDate("01/05/2020"); // MM/dd/yyyy
+
+        // dd/MM/yyyy
+
+
 
     }
 
