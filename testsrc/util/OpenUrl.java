@@ -13,7 +13,7 @@ import static utility.Driver.getDriver;
 
 public class OpenUrl {
 
-   public  WebDriver driver;
+   public static WebDriver driver;
 
     @BeforeClass
     public void openUrl() throws IOException {
