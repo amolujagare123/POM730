@@ -11,14 +11,14 @@ import org.testng.annotations.Test;
 import pages.Menu;
 import pages.clients.AddClients;
 import util.DoLogin;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import static utility.Conversion.convertcountry;
+import static utility.Conversion.*;
+
 
 public class AddClientTest extends DoLogin {
 
@@ -80,6 +80,8 @@ public class AddClientTest extends DoLogin {
         addClients.setGender(gender);
         addClients.clickSave();
 
+        // JDBC code
+
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         String user ="root";
@@ -107,13 +109,18 @@ public class AddClientTest extends DoLogin {
             actual.add(rs.getString("client_state"));
             actual.add(rs.getString("client_zip"));
 
-            String shortCountry = rs.getString("client_country");
-            String fullCountry = convertcountry(shortCountry);
-            actual.add(fullCountry);
+
+            String countryShort = rs.getString("client_country");// short form country
+
+            String countryFullform = convertCountry(countryShort);
+           // actual.add(rs.getString("client_country")); // short form country
+            actual.add(countryFullform);
+
+            actual.add(convertGender(rs.getString("client_gender")));
+
+            actual.add(dateConvert(rs.getString("client_birthdate")));
 
 
-            actual.add(rs.getString("client_gender"));
-            actual.add(rs.getString("client_birthdate"));
             actual.add(rs.getString("client_phone"));
             actual.add(rs.getString("client_fax"));
             actual.add(rs.getString("client_mobile"));
@@ -125,7 +132,8 @@ public class AddClientTest extends DoLogin {
 
         System.out.println(actual);
 
-        Assert.assertEquals(actual,expected,"records mismatch in table");
+
+       Assert.assertEquals(actual,expected,"records mismatch in table");
 
 
 
