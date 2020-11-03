@@ -11,17 +11,27 @@ public class Login {
 
   //  WebElement txtUser1 = driver.findElement(By.xpath("//input[@id='email']"));
 
+    @FindBy (xpath="//h1[normalize-space()='Login']")
+    public WebElement lblLogin;
+
+    @FindBy (xpath="//label[normalize-space()='Email']")
+    public WebElement lblEmail;
+
+    @FindBy (xpath="//label[normalize-space()='Password']")
+    public WebElement lblPassword;
+
+
     @FindBy (xpath="//input[@id='email']")
-    WebElement txtUser;
+    public WebElement txtUser;
 
     @FindBy (xpath = "//input[@id='password']")
-    WebElement txtPassword;
+    public WebElement txtPassword;
 
     @FindBy (xpath="//button[@type='submit']")
-    WebElement btnLogin;
+    public WebElement btnLogin;
 
     @FindBy (xpath = "//a[@class='btn btn-default']")
-    WebElement btnForgotPass;
+    public WebElement btnForgotPass;
 
     public  Login(WebDriver driver)
     {
